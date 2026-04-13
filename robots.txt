@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arranjospsicologia.github.io/temp_dgurgel/sitemap.xml
