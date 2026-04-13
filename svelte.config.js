@@ -13,7 +13,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.argv.includes('dev') ? '' : '/temp_dgurgel',
+			base: '',
 			relative: false
 		}
 	}

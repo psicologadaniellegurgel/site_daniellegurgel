@@ -1,485 +1,338 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import SEO from "$lib/components/SEO.svelte";
+    import { base } from "$app/paths";
+    import ArticleCard from "$lib/components/ArticleCard.svelte";
+    import FAQAccordion from "$lib/components/FAQAccordion.svelte";
+    import ReviewGrid from "$lib/components/ReviewGrid.svelte";
+    import SEO from "$lib/components/SEO.svelte";
+    import SectionTitle from "$lib/components/SectionTitle.svelte";
+    import { blogPosts } from "$lib/content/posts";
+    import {
+        homeFaqs,
+        homeHelpThemes,
+        homeHero,
+        homeLocationHighlights,
+        homeProofPoints,
+        homeStartPaths,
+        homeServicesPrimary,
+        homeServicesSupport,
+    } from "$lib/data/home";
+    import { googleReviews } from "$lib/data/reviews";
+    import {
+        buildWhatsAppLink,
+        professionalVerificationLinks,
+        siteConfig,
+    } from "$lib/data/site";
+    import { createFaqSchema } from "$lib/utils/schema";
+    import { fixPt } from "$lib/utils/text";
+    import { internalHref } from "$lib/utils/url";
 
-    // Custom schema for Homepage
-    const homeSchema = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        name: "Psicóloga Danielle Gurgel | Psicoterapia em Higienópolis",
-        description:
-            "Psicóloga clínica para mulheres em São Paulo. Ansiedade, burnout e transições de vida.",
-        url: "https://psicologadaniellegurgel.com",
-    };
+    const recentPosts = blogPosts.slice(0, 3);
+    const serviceSupportSteps = homeServicesSupport.map((item, index) => ({
+        ...item,
+        step: String(index + 1).padStart(2, "0"),
+    }));
+
+    const homeSchemas = [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: homeHero.title,
+            description: homeHero.intro,
+            url: `${siteConfig.url}/`,
+        },
+        createFaqSchema(homeFaqs),
+    ];
+
+    const workStyle = [
+        {
+            title: "Escuta centrada na sua experiência",
+            text: "O trabalho parte da relação e da experiência concreta, não de respostas prontas sobre quem você deveria ser.",
+        },
+        {
+            title: "Presença, não fórmula pronta",
+            text: "Cuidado sem infantilização, sem discurso médico vazio e sem promessas que simplificam demais a sua vida.",
+        },
+        {
+            title: "Cidade, rotina e vida emocional no mesmo campo",
+            text: "A clínica conversa com a vida urbana real: deslocamento, cansaço, culpa, relações e transições.",
+        },
+    ];
+
 </script>
 
 <SEO
-    title="Psicóloga Danielle Gurgel | Psicoterapia em Higienópolis, SP"
-    schemas={[homeSchema]}
+    title="Danielle Gurgel | Psicoterapia em Higienópolis, SP"
+    description="Psicoterapia humanista em Higienópolis para mulheres que atravessam luto, relações difíceis, sobrecarga emocional e mudanças de vida."
+    canonical="/"
+    schemas={homeSchemas}
 />
 
-<!-- HERO SECTION -->
-<section
-    class="relative pt-6 pb-20 md:pt-16 md:pb-32 overflow-hidden gradient-hero"
->
-    <div class="container relative z-10 px-4 mx-auto">
-        <div
-            class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-8 max-w-7xl mx-auto"
-        >
-            <!-- Text Content -->
-            <div
-                class="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left"
-            >
-                <div
-                    class="inline-block px-4 py-1.5 rounded-full bg-secondary-dark/10 text-primary-dark font-medium text-sm tracking-widest uppercase mb-6 mx-auto lg:mx-0 border border-primary/20 shadow-sm w-fit"
-                >
-                    CRP 06/148054
+<section class="page-section pt-6 md:pt-10">
+    <div class="site-shell">
+        <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div class="space-y-6">
+                <span class="section-kicker">Psicoterapia humanista em Higienópolis, SP</span>
+
+                <div class="space-y-4">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl">{fixPt(homeHero.title)}</h1>
+                    <p class="max-w-[42rem] text-lg text-[var(--ink-soft)] md:text-xl">
+                        {fixPt(homeHero.intro)}
+                    </p>
                 </div>
 
-                <h1
-                    class="text-4xl md:text-5xl lg:text-6xl font-heading text-black leading-tight mb-6"
-                >
-                    Acolhimento <span class="text-primary italic font-normal"
-                        >especializado</span
-                    > para a realidade feminina
-                </h1>
+                <div class="chip-row">
+                    {#each homeHero.badges as badge}
+                        <span class="chip">{fixPt(badge)}</span>
+                    {/each}
+                </div>
 
-                <p
-                    class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0"
-                >
-                    Psicoterapia presencial em <strong
-                        class="font-semibold text-primary-dark"
-                        >Higienópolis</strong
-                    > e online. Um espaço seguro focado na Abordagem Centrada na
-                    Pessoa para executivas, mães e mulheres em transição.
-                </p>
-
-                <div
-                    class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-                >
+                <div class="button-row">
                     <a
-                        href="https://wa.me/5511932037191?text=Olá!%20Gostaria%20de%20agendar%20uma%20primeira%20sessão%20de%20psicoterapia."
+                        href={buildWhatsAppLink("Oi, vim pelo site e gostaria de saber sobre atendimento.")}
+                        class="btn btn-primary"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="btn btn-lg btn-primary shadow-hover"
                     >
-                        Agendar Primeira Sessão
+                        Conversar no WhatsApp
                     </a>
-                    <a
-                        href="{base}/sobre"
-                        class="btn btn-lg bg-white text-primary-dark border border-border-light hover:border-primary/50 shadow-sm"
-                    >
-                        Conhecer a Psicóloga
+                    <a href={internalHref("/sobre")} class="btn btn-secondary">
+                        Conhecer Danielle
                     </a>
                 </div>
             </div>
 
-            <!-- LCP Hero Image -->
-            <div
-                class="w-full lg:w-1/2 relative flex justify-center lg:justify-end"
-            >
-                <div class="relative w-full max-w-[500px]">
+            <div class="home-hero-stack">
+                <div class="relative">
+                    <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_top,_rgba(194,131,73,0.24),_transparent_60%)] blur-2xl"></div>
                     <picture>
                         <source
                             type="image/avif"
-                            srcset="{base}/images/psicologa-danielle-gurgel-higienopolis-sp-450w.avif 450w, {base}/images/psicologa-danielle-gurgel-higienopolis-sp-800w.avif 800w, {base}/images/psicologa-danielle-gurgel-higienopolis-sp-1200w.avif 1200w"
-                            sizes="(max-width: 768px) 100vw, 50vw"
+                            srcset={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero-600w.avif 600w, ${base}/images/danielle-gurgel-psicologa-higienopolis-hero-1200w.avif 1200w`}
+                            sizes="(min-width: 1024px) 46vw, 100vw"
                         />
                         <source
                             type="image/webp"
-                            srcset="{base}/images/psicologa-danielle-gurgel-higienopolis-sp-450w.webp 450w, {base}/images/psicologa-danielle-gurgel-higienopolis-sp-800w.webp 800w, {base}/images/psicologa-danielle-gurgel-higienopolis-sp-1200w.webp 1200w"
-                            sizes="(max-width: 768px) 100vw, 50vw"
+                            srcset={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero-600w.webp 600w, ${base}/images/danielle-gurgel-psicologa-higienopolis-hero-1200w.webp 1200w`}
+                            sizes="(min-width: 1024px) 46vw, 100vw"
                         />
                         <img
-                            src="{base}/images/psicologa-danielle-gurgel-higienopolis-sp-800w.webp"
-                            alt="Psicóloga Danielle Gurgel no consultório em Higienópolis"
+                            src={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero.avif`}
+                            alt="Danielle Gurgel em retrato principal do site"
+                            width="1200"
+                            height="1500"
+                            loading="eager"
                             fetchpriority="high"
-                            decoding="sync"
-                            class="w-full h-auto rounded-[2rem] shadow-glow object-cover aspect-[4/5]"
+                            class="surface-card-strong aspect-[4/5] w-full object-cover"
                         />
                     </picture>
                 </div>
+
+                <div class="surface-card home-hero-sidebar p-5 md:p-6">
+                    <div class="space-y-3">
+                        <span class="page-compass-step">Três entradas possíveis</span>
+                        <h2 class="text-2xl text-[var(--clay-deep)]">
+                            Você não precisa começar pela mesma porta que todo mundo
+                        </h2>
+                        <p class="text-[var(--ink-soft)]">
+                            Você pode entrar pelo que está mais vivo agora: o que sente,
+                            como o atendimento funciona ou quem está do outro lado.
+                        </p>
+                    </div>
+
+                    <div class="home-quick-links">
+                        {#each homeStartPaths as item, index}
+                            <a href={internalHref(item.href)} class="home-quick-link">
+                                <span class="home-quick-link-index">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                                <div class="space-y-1">
+                                    <strong>{fixPt(item.title)}</strong>
+                                    <p>{fixPt(item.text)}</p>
+                                </div>
+                            </a>
+                        {/each}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- AVALIAÇÕES GOOGLE -->
-<section class="py-16 bg-secondary-light">
-    <div class="container mx-auto px-4 max-w-7xl">
-        <div
-            class="flex flex-col md:flex-row justify-between items-center mb-12"
-        >
-            <div class="text-center md:text-left">
-                <h2 class="text-3xl font-heading mb-2 text-primary-dark">
-                    Avaliações no Google
-                </h2>
-                <div
-                    class="flex items-center justify-center md:justify-start gap-2"
-                >
-                    <span class="text-2xl font-bold text-gray-900">5.0</span>
-                    <div class="flex text-yellow-500">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"
-                            ><path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                            ></path></svg
-                        >
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"
-                            ><path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                            ></path></svg
-                        >
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"
-                            ><path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                            ></path></svg
-                        >
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"
-                            ><path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                            ></path></svg
-                        >
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"
-                            ><path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                            ></path></svg
-                        >
-                    </div>
-                </div>
-                <p class="text-sm text-gray-600 mt-1">
-                    Mais de 20 avaliações de pacientes (Excelência no
-                    atendimento local)
-                </p>
-            </div>
+<section id="como-posso-ajudar" class="page-section pt-0">
+    <div class="site-shell">
+        <div class="section-panel section-panel-accent">
+            <SectionTitle
+                eyebrow="Como posso ajudar"
+                title="Talvez alguma dessas experiências tenha te trazido até aqui"
+                intro="São temas que costumam aparecer no consultório e foram organizados por experiência vivida, não por rótulo."
+            />
 
-            <div class="mt-6 md:mt-0 text-center md:text-right">
-                <a
-                    href="https://wa.me/5511932037191"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-primary hover:text-primary-dark font-medium border-b border-primary pb-0.5 transition-colors"
-                >
-                    Ver reputação ou agendar &rarr;
-                </a>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Review 1 -->
-            <div
-                class="bg-white p-8 rounded-2xl shadow-sm border border-border-light flex flex-col h-full"
-            >
-                <div class="flex items-center gap-4 mb-5">
-                    <div
-                        class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary-dark font-semibold text-lg"
-                    >
-                        M
-                    </div>
-                    <div>
-                        <p class="font-medium text-gray-900 leading-tight">
-                            Maria Luisa
-                        </p>
-                        <div class="flex text-yellow-500 mt-1">
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                        </div>
-                    </div>
-                </div>
-                <p class="text-gray-700 italic flex-grow">
-                    "O consultório em Higienópolis me trouxe paz. Profissional
-                    extremamente acolhedora e ética. Me sinto segura no processo
-                    terapêutico focando minha saúde mental."
-                </p>
-            </div>
-
-            <!-- Review 2 -->
-            <div
-                class="bg-white p-8 rounded-2xl shadow-sm border border-border-light flex flex-col h-full"
-            >
-                <div class="flex items-center gap-4 mb-5">
-                    <div
-                        class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary-dark font-semibold text-lg"
-                    >
-                        P
-                    </div>
-                    <div>
-                        <p class="font-medium text-gray-900 leading-tight">
-                            Paciente (Anônimo)
-                        </p>
-                        <div class="flex text-yellow-500 mt-1">
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                        </div>
-                    </div>
-                </div>
-                <p class="text-gray-700 italic flex-grow">
-                    "Recomendo a Danielle de olhos fechados. Excelente
-                    psicóloga, a escuta ativa dela mudou minha relação com o
-                    trabalho e o stress do dia a dia."
-                </p>
-            </div>
-
-            <!-- Review 3 -->
-            <div
-                class="bg-white p-8 rounded-2xl shadow-sm border border-border-light flex flex-col h-full"
-            >
-                <div class="flex items-center gap-4 mb-5">
-                    <div
-                        class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary-dark font-semibold text-lg"
-                    >
-                        C
-                    </div>
-                    <div>
-                        <p class="font-medium text-gray-900 leading-tight">
-                            Cliente de Consulta Online
-                        </p>
-                        <div class="flex text-yellow-500 mt-1">
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                            <svg
-                                class="w-4 h-4 fill-current"
-                                viewBox="0 0 20 20"
-                                ><path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                ></path></svg
-                            >
-                        </div>
-                    </div>
-                </div>
-                <p class="text-gray-700 italic flex-grow">
-                    "Faço sessões de desenvolvimento com a Danielle online e é
-                    muito prático e acolhedor. Ajuda imensamente a organizar a
-                    vida pessoal e profissional sem perder tempo com o trânsito
-                    de SP."
-                </p>
+            <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {#each homeHelpThemes as item, index}
+                    <article class={index % 2 === 0 ? "surface-card p-6" : "surface-card-strong p-6"}>
+                        <h3 class="text-2xl text-[var(--ink)]">{fixPt(item.title)}</h3>
+                        <p class="mt-3 text-[var(--ink-soft)]">{fixPt(item.text)}</p>
+                        <a href={internalHref(item.href)} class="eyebrow-link mt-4 inline-flex">
+                            {fixPt(item.label)}
+                        </a>
+                    </article>
+                {/each}
             </div>
         </div>
     </div>
 </section>
 
-<!-- PROVA SOCIAL / EEAT (Social Proof) -->
-<section class="py-16 bg-white border-y border-border-light">
-    <div class="container mx-auto px-4 max-w-7xl">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-heading mb-4 text-primary-dark">
-                Como posso ajudar?
-            </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Áreas de especialidade na psicoterapia para mulheres
-            </p>
-        </div>
+<section id="servicos" class="page-section pt-0">
+    <div class="site-shell">
+        <div class="section-panel section-panel-soft">
+            <SectionTitle
+                eyebrow="Serviços"
+                title="Formatos de atendimento e caminhos práticos para começar"
+                intro="Aqui entram as decisões operacionais do processo: formato, primeira sessão, reembolso e localização. A ideia é facilitar escolha e início, sem burocratizar o cuidado."
+            />
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Especialidade 1 -->
-            <a href="{base}/experiencia/ansiedade-e-stress" class="block group">
-                <div
-                    class="bg-secondary-light rounded-2xl p-8 hover:shadow-lg transition-all duration-300 border border-transparent hover:border-primary/20 h-full"
-                >
-                    <h3
-                        class="text-xl font-heading font-semibold text-gray-900 group-hover:text-primary transition-colors mb-4"
-                    >
-                        Ansiedade e Alta Performance
+            <div class="home-service-grid">
+                {#each homeServicesPrimary as item, index}
+                    <article class="home-service-feature">
+                        <span class="home-service-badge">
+                            {index === 0 ? "Presencial em Higienópolis" : "Continuidade online"}
+                        </span>
+                        <h3 class="text-2xl text-[var(--ink)]">{fixPt(item.title)}</h3>
+                        <p class="mt-3 text-[var(--ink-soft)]">{fixPt(item.text)}</p>
+                        <a href={internalHref(item.href)} class="btn btn-secondary mt-6">
+                            {fixPt(item.label)}
+                        </a>
+                    </article>
+                {/each}
+            </div>
+
+            <div class="home-practical-panel">
+                <div class="space-y-3">
+                    <span class="section-kicker">Aspectos práticos</span>
+                    <h3 class="text-2xl text-[var(--clay-deep)] md:text-3xl">
+                        Respondendo dúvidas que costumam aparecer sobre aspectos práticos
                     </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Identifique e trate os sintomas silenciosos do burnout e
-                        da ansiedade em ambientes corporativos de alta pressão.
+                    <p class="text-[var(--ink-soft)]">
+                        Primeira sessão, convênio, reembolso e localização ficam reunidos aqui para
+                        ajudar você a entender o funcionamento com mais clareza.
                     </p>
                 </div>
-            </a>
 
-            <!-- Especialidade 2 -->
-            <a
-                href="{base}/experiencia/relacionamentos-familiares"
-                class="block group"
-            >
-                <div
-                    class="bg-secondary-light rounded-2xl p-8 hover:shadow-lg transition-all duration-300 border border-transparent hover:border-primary/20 h-full"
-                >
-                    <h3
-                        class="text-xl font-heading font-semibold text-gray-900 group-hover:text-primary transition-colors mb-4"
-                    >
-                        Maternidade e Relacionamentos
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Atendimento focado na sobrecarga mental materna,
-                        codependência emocional e crises conjugais.
-                    </p>
+                <div class="home-practical-grid">
+                    {#each serviceSupportSteps as item}
+                        <article class="home-practical-item">
+                            <span class="page-compass-step">{item.step}</span>
+                            <h3 class="mt-4 text-xl text-[var(--ink)]">{fixPt(item.title)}</h3>
+                            <p class="mt-3 text-[var(--ink-soft)]">{fixPt(item.text)}</p>
+                            <a href={internalHref(item.href)} class="eyebrow-link mt-4 inline-flex">
+                                {fixPt(item.label)}
+                            </a>
+                        </article>
+                    {/each}
                 </div>
-            </a>
-
-            <!-- Especialidade 3 -->
-            <a href="{base}/psicologa-mulheres-higienopolis" class="block group">
-                <div
-                    class="bg-secondary-light rounded-2xl p-8 hover:shadow-lg transition-all duration-300 border border-transparent hover:border-primary/20 h-full"
-                >
-                    <h3
-                        class="text-xl font-heading font-semibold text-gray-900 group-hover:text-primary transition-colors mb-4"
-                    >
-                        Transições de Vida
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Apoio para mulheres acima dos 40 anos, síndrome do ninho
-                        vazio e reinserção no mercado de trabalho.
-                    </p>
-                </div>
-            </a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- YMYL AUTHORITY & ABOUT (BLUF) -->
-<section class="py-24 bg-secondary">
-    <div class="container mx-auto px-4 max-w-7xl">
-        <div class="flex flex-col lg:flex-row items-center gap-16">
-            <div class="w-full lg:w-5/12">
-                <picture>
-                    <source
-                        type="image/avif"
-                        srcset="{base}/images/psicologa-danielle-gurgel-sobre-400w.avif 400w, {base}/images/psicologa-danielle-gurgel-sobre-800w.avif 800w"
-                        sizes="(max-width: 768px) 100vw, 50vw"
+<section id="quem-sustenta" class="page-section pt-0">
+    <div class="site-shell">
+        <div class="section-panel section-panel-outline">
+            <div class="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+                <article class="surface-card-strong px-6 py-7 md:px-8">
+                    <SectionTitle
+                        eyebrow="Abordagem Centrada na Pessoa"
+                        title="Como a ACP aparece no trabalho da Danielle"
+                        intro="A base do trabalho é a Abordagem Centrada na Pessoa: uma clínica que prioriza relação, escuta e autonomia, sem fórmulas prontas."
                     />
-                    <source
-                        type="image/webp"
-                        srcset="{base}/images/psicologa-danielle-gurgel-sobre-400w.webp 400w, {base}/images/psicologa-danielle-gurgel-sobre-800w.webp 800w"
-                        sizes="(max-width: 768px) 100vw, 50vw"
+
+                    <div class="grid gap-4">
+                        {#each workStyle as item, index}
+                            <article class="timeline-card">
+                                <span class="timeline-period">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                                <h3 class="text-xl text-[var(--ink)]">{item.title}</h3>
+                                <p class="mt-3 text-[var(--ink-soft)]">{item.text}</p>
+                            </article>
+                        {/each}
+                    </div>
+                </article>
+
+                <article class="surface-card px-6 py-7 md:px-8">
+                    <SectionTitle
+                        eyebrow="Antes do primeiro contato"
+                        title="Informações que podem ajudar você a decidir com mais calma"
+                        intro="Se quiser, aqui estão registro, formação e alguns pontos importantes sobre a trajetória profissional."
                     />
+
+                    <div class="grid gap-4">
+                        {#each homeProofPoints as item}
+                            <article class="stat-card">
+                                <h3 class="text-xl text-[var(--ink)]">{fixPt(item.title)}</h3>
+                                <p class="mt-3 text-[var(--ink-soft)]">{fixPt(item.text)}</p>
+                            </article>
+                        {/each}
+                    </div>
+                    <div class="button-row mt-6">
+                        <a href={internalHref("/sobre")} class="btn btn-secondary">Conhecer Danielle</a>
+                        {#if professionalVerificationLinks[0]}
+                            <a
+                                href={professionalVerificationLinks[0].href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn-ghost"
+                            >
+                                Ver perfil no Google
+                            </a>
+                        {/if}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="avaliacoes" class="page-section pt-0">
+    <div class="site-shell">
+        <div class="section-panel section-panel-accent">
+            <SectionTitle
+                eyebrow="Avaliações públicas"
+                title="Como algumas pessoas descrevem a experiência de atendimento"
+                intro="Se quiser, você pode ler avaliações públicas sobre acolhimento, escuta e presença no processo."
+            />
+            <ReviewGrid reviews={googleReviews} />
+        </div>
+    </div>
+</section>
+
+<section id="localizacao" class="page-section pt-0">
+    <div class="site-shell">
+        <div class="section-panel section-panel-soft">
+            <div class="grid gap-8 md:grid-cols-[1fr_0.9fr]">
+                <div>
+                    <SectionTitle
+                        eyebrow="Localização"
+                        title="Um consultório bem localizado ajuda o cuidado a caber na rotina"
+                        intro="Av. Angélica, 1996, sala 501. Perto do metrô, com acesso fácil e estrutura pensada para atendimento com hora marcada."
+                    />
+                    <ul class="editorial-list">
+                        {#each homeLocationHighlights as highlight}
+                            <li>{fixPt(highlight)}</li>
+                        {/each}
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
                     <img
-                        src="{base}/images/psicologa-danielle-gurgel-sobre-800w.webp"
-                        alt="Danielle Gurgel, psicóloga em Higienópolis lendo um livro"
-                        loading="lazy"
-                        decoding="async"
-                        class="w-full h-auto rounded-3xl shadow-md object-cover"
+                        src={`${base}/images/consultorio-psicologia-higienopolis-sp-01.avif`}
+                        alt="Imagem do consultório em Higienópolis"
+                        width="900"
+                        height="1125"
+                        class="surface-card aspect-[4/3] w-full object-cover"
                     />
-                </picture>
-            </div>
-
-            <div class="w-full lg:w-7/12">
-                <h2 class="text-3xl md:text-4xl font-heading text-black mb-6">
-                    Danielle Gurgel
-                </h2>
-                <p class="text-xl text-primary-dark font-medium mb-6">
-                    Psicóloga Clínica • CRP 06/148054
-                </p>
-
-                <div
-                    class="prose prose-lg text-gray-700 font-sans max-w-prose space-y-4"
-                >
-                    <p>
-                        Formada pela <strong
-                            >Universidade Federal do Espírito Santo (UFES)</strong
-                        >, minha prática fundamenta-se na Abordagem Centrada na
-                        Pessoa. Entregando uma escuta ética, atenta e despida de
-                        julgamentos.
-                    </p>
-                    <p>
-                        Meu consultório na <strong
-                            >Av. Angélica, em Higienópolis</strong
-                        >, foi desenhado para ser um refúgio seguro de
-                        descompressão no coração de São Paulo. Auxilio mulheres
-                        a organizar suas emoções, tomar decisões difíceis e
-                        encontrar clareza em meio às demandas das carreiras e da
-                        vida pessoal.
-                    </p>
-                </div>
-
-                <div class="mt-8">
-                    <a
-                        href="{base}/sobre"
-                        class="text-primary-dark font-semibold border-b-2 border-primary-light hover:border-primary transition-colors pb-1"
-                    >
-                        Minha abordagem completa &rarr;
+                    <a href={internalHref("/localizacao/psicologa-higienopolis-sp")} class="btn btn-secondary">
+                        Ver localização completa
                     </a>
                 </div>
             </div>
@@ -487,24 +340,63 @@
     </div>
 </section>
 
-<!-- CALL TO ACTION (GEO FOCUSED) -->
-<section class="py-24 bg-gradient-cta relative overflow-hidden">
-    <div class="container mx-auto px-4 max-w-4xl relative z-10 text-center">
-        <h2 class="text-3xl md:text-5xl font-heading text-white mb-6">
-            Pronta para Cuidar de Você?
-        </h2>
-        <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            O primeiro passo é sempre o mais difícil. O atendimento no
-            consultório em Higienópolis possui horários flexíveis para acomodar
-            sua rotina.
-        </p>
-        <a
-            href="https://wa.me/5511932037191?text=Olá!%20Vim%20pelo%20site.%20Gostaria%20de%20saber%20sobre%20horários%20de%20atendimento%20em%20Higienópolis."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 bg-white text-primary-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-secondary-light transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
-        >
-            Agendar Sessão Presencial ou Online
-        </a>
+<section id="artigos" class="page-section pt-0">
+    <div class="site-shell">
+        <div class="section-panel section-panel-outline">
+            <SectionTitle
+                eyebrow="Artigos"
+                title="Se preferir continuar pela leitura, estes textos podem ajudar"
+                intro="Aqui estão os três textos mais recentes do site, para aprofundar dúvidas com calma e sem pressa."
+            />
+
+            <div class="grid gap-5 md:grid-cols-3">
+                {#each recentPosts as post}
+                    <ArticleCard {post} compact />
+                {/each}
+            </div>
+
+            <div class="mt-6">
+                <a href={internalHref("/artigos")} class="btn btn-ghost">Ver todos os artigos</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="perguntas-frequentes" class="page-section pt-0">
+    <div class="site-shell">
+        <div class="section-panel section-panel-soft">
+            <SectionTitle
+                eyebrow="Perguntas frequentes"
+                title="O que costuma ser importante saber antes de mandar mensagem"
+            />
+            <FAQAccordion items={homeFaqs} />
+        </div>
+    </div>
+</section>
+
+<section class="page-section">
+    <div class="site-shell">
+        <div class="surface-card-strong page-gradient overflow-hidden px-6 py-8 md:px-10 md:py-10">
+            <div class="max-w-[40rem] space-y-4">
+                <span class="section-kicker">Primeiro contato</span>
+                <h2 class="text-3xl md:text-4xl">
+                    Se alguma parte do site pareceu falar da sua vida com honestidade, podemos continuar a conversa
+                </h2>
+                <p class="text-lg text-[var(--ink-soft)]">
+                    Uma mensagem como "vim pelo site e gostaria de saber sobre atendimento" já é suficiente.
+                </p>
+                <div class="button-row">
+                    <a
+                        href={buildWhatsAppLink("Oi, vim pelo site e gostaria de saber sobre atendimento.")}
+                        class="btn btn-primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Falar no WhatsApp
+                    </a>
+                    <a href={internalHref("/contato")} class="btn btn-secondary">Ver página de contato</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

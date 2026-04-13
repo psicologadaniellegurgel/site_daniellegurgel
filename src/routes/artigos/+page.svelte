@@ -1,113 +1,106 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import SEO from "$lib/components/SEO.svelte";
+    import ArticleCard from "$lib/components/ArticleCard.svelte";
+    import SEO from "$lib/components/SEO.svelte";
+    import SectionTitle from "$lib/components/SectionTitle.svelte";
+    import { blogPosts } from "$lib/content/posts";
+    import { categories } from "$lib/data/categories";
+    import { siteConfig } from "$lib/data/site";
+    import { internalHref } from "$lib/utils/url";
 
-    const articlesSchema = {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        name: "Artigos de Psicologia por Danielle Gurgel",
-        description:
-            "Textos autorais sobre saúde mental feminina, burnout, relacionamentos e maternidade.",
-        url: "https://psicologadaniellegurgel.com/artigos",
-    };
+    let activeCategory = "todos";
+    let search = "";
 
-    const articles = [
+    $: filteredPosts = blogPosts.filter((post) => {
+        const matchesCategory =
+            activeCategory === "todos" || post.categorySlug === activeCategory;
+        const haystack = `${post.title} ${post.excerpt} ${post.tags.join(" ")}`.toLowerCase();
+        const matchesSearch = search === "" || haystack.includes(search.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
+
+    const schemas = [
         {
-            title: "Como a cultura corporativa acelera quadros de Burnout em mulheres",
-            excerpt:
-                "Exploramos por que mulheres sofrem de esgotamento profissional em uma taxa 30% maior que homens em cargos de liderança semelhantes.",
-            link: "#", // placeholder for future article
-            category: "Carreira & Burnout",
-        },
-        {
-            title: "O peso do silêncio: a codependência emocional nas famílias paulistanas",
-            excerpt:
-                "Como identificar os limites invisíveis nas relações familiares e resgatar o direito de priorizar as próprias emoções.",
-            link: "#",
-            category: "Relacionamentos",
-        },
-        {
-            title: "Síndrome do Ninho Vazio: Redescobrindo o indivíduo após os 50 anos",
-            excerpt:
-                "A saída dos filhos de casa não é o fim de um papel, mas o recomeço da sua história individual esquecida na juventude.",
-            link: "#",
-            category: "Transições de Vida",
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Artigos de Danielle Gurgel",
+            description:
+                "Hub editorial com textos sobre psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.",
+            url: `${siteConfig.url}/artigos/`,
         },
     ];
 </script>
 
 <SEO
-    title="Artigos sobre Saúde Mental Feminina | Psicóloga Danielle Gurgel"
-    description="Leia textos autorais e especializados em psicologia clínica focada em mulheres. Informação segura escrita pela psicóloga Danielle Gurgel."
-    schemas={[articlesSchema]}
+    title="Artigos | Danielle Gurgel"
+    description="Hub editorial com textos sobre psicoterapia, luto, relacionamentos, sobrecarga emocional e autoconhecimento."
+    canonical="/artigos"
+    schemas={schemas}
 />
 
-<div class="breadcrumb pt-32 pb-8 bg-secondary border-b border-border-light">
-    <div class="container mx-auto px-4 max-w-5xl">
-        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-            <li
-                itemprop="itemListElement"
-                itemscope
-                itemtype="https://schema.org/ListItem"
-            >
-                <a itemprop="item" href="{base}"
-                    ><span itemprop="name">Início</span></a
-                >
-                <meta itemprop="position" content="1" />
-            </li>
-            <li
-                itemprop="itemListElement"
-                itemscope
-                itemtype="https://schema.org/ListItem"
-                aria-current="page"
-            >
-                <span itemprop="name" class="text-text-light">Artigos</span>
-                <meta itemprop="position" content="2" />
-            </li>
-        </ol>
-    </div>
-</div>
+<section class="page-section pt-6 md:pt-10">
+    <div class="site-shell">
+        <SectionTitle
+            eyebrow="Hub editorial"
+            title="Textos para entender melhor o que você está vivendo, sem excesso de ruído"
+            intro="O blog organiza dúvidas que costumam aparecer antes mesmo do primeiro contato: primeira sessão, luto, relações, rotina, identidade e o começo da terapia."
+        />
 
-<article class="py-16 bg-white min-h-[60vh]">
-    <div class="container mx-auto px-4 max-w-5xl">
-        <header class="mb-16">
-            <h1 class="text-4xl md:text-5xl font-heading text-black mb-6">
-                Artigos & Reflexões Clínicas
-            </h1>
-            <p
-                class="text-xl text-primary-dark font-medium leading-relaxed max-w-3xl"
-            >
-                Informações baseadas na Abordagem Centrada na Pessoa, focadas no
-                desenvolvimento e acolhimento da psique feminina na atualidade.
-            </p>
-        </header>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            {#each articles as article}
-                <div
-                    class="border border-border-light rounded-2xl p-8 hover:shadow-lg transition-all duration-300 flex flex-col items-start bg-secondary-light/30"
-                >
-                    <span
-                        class="inline-block px-3 py-1 bg-white border border-primary/20 text-primary-dark text-xs font-bold uppercase tracking-wider rounded-full mb-4"
-                    >
-                        {article.category}
-                    </span>
-                    <h2
-                        class="text-2xl font-heading text-black mb-4 leading-tight"
-                    >
-                        {article.title}
-                    </h2>
-                    <p class="text-gray-600 mb-6 flex-grow">
-                        {article.excerpt}
-                    </p>
-                    <a
-                        href={article.link}
-                        class="text-primary font-medium hover:text-primary-dark transition-colors border-b border-primary pb-0.5"
-                    >
-                        Ler artigo completo
-                    </a>
-                </div>
+        <div class="surface-card-strong mt-6 grid gap-4 p-5 md:grid-cols-2 md:p-6">
+            {#each categories as category}
+                <a href={internalHref(`/${category.slug}`)} class="proof-link-card">
+                    <div>
+                        <h2 class="text-xl text-(--ink)">{category.label}</h2>
+                        <p class="mt-3 text-sm text-(--ink-soft)">{category.lead}</p>
+                    </div>
+                    <span class="eyebrow-link">Ver tema</span>
+                </a>
             {/each}
         </div>
     </div>
-</article>
+</section>
+
+<section class="page-section pt-0">
+    <div class="site-shell">
+        <div class="surface-card-strong flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+            <div class="chip-row">
+                <button
+                    class={`chip ${activeCategory === "todos" ? "border-(--border-strong) text-(--clay-deep)" : ""}`}
+                    on:click={() => (activeCategory = "todos")}
+                >
+                    Todos
+                </button>
+                {#each categories as category}
+                    <button
+                        class={`chip ${activeCategory === category.slug ? "border-(--border-strong) text-(--clay-deep)" : ""}`}
+                        on:click={() => (activeCategory = category.slug)}
+                    >
+                        {category.label}
+                    </button>
+                {/each}
+            </div>
+
+            <input
+                bind:value={search}
+                type="search"
+                placeholder="Buscar por tema, título ou palavra"
+                class="w-full rounded-full border border-(--border) bg-white px-4 py-3 text-(--ink) outline-none focus:border-(--border-strong) md:max-w-[20rem]"
+            />
+        </div>
+    </div>
+</section>
+
+<section class="page-section pt-0">
+    <div class="site-shell">
+        {#if filteredPosts.length}
+            <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {#each filteredPosts as post}
+                    <ArticleCard {post} />
+                {/each}
+            </div>
+        {:else}
+            <div class="surface-card-strong px-6 py-8 text-(--ink-soft)">
+                Nenhum texto apareceu com esse filtro. Tente outra palavra ou entre por um dos temas acima.
+            </div>
+        {/if}
+    </div>
+</section>

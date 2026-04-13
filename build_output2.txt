@@ -1,7 +1,0 @@
-﻿
-> site-dgurgel@0.0.1 build
-> vite build
-
-[36mvite v7.3.1 [32mbuilding ssr environment for production...[36m[39m
-transforming...
-[32mÔ£ô[39m 134 modules transformed.

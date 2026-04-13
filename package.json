@@ -10,7 +10,8 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"deploy": "npm run build && gh-pages -d build -b gh-pages --repo https://github.com/arranjospsicologia/temp_dgurgel.git --dotfiles"
+		"deploy": "npm run build && gh-pages -d build -b gh-pages --repo https://github.com/psicologadaniellegurgel/site_daniellegurgel.git --dotfiles",
+		"audit:content": "node scripts/audit-content.mjs"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^7.0.0",
