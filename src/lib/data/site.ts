@@ -30,7 +30,7 @@ export const siteConfig = {
     professionalName: "Danielle Gurgel",
     description:
         "Psicoterapia humanista em Higienópolis para mulheres que atravessam luto, relações difíceis, sobrecarga e transições de vida.",
-    url: "https://arranjospsicologia.github.io/temp_dgurgel",
+    url: "https://psicologadaniellegurgel.com.br",
     phoneIntl: "5511932037191",
     phoneDisplay: "+55 (11) 93203-7191",
     crp: "06/148054",
