@@ -67,6 +67,7 @@ export interface ContentPage {
     title: string;
     metaTitle?: string;
     description: string;
+    updatedAt?: string;
     canonicalPath: string;
     heroEyebrow: string;
     heroIntro: string;
@@ -98,6 +99,7 @@ export interface BlogPostDocument {
     description: string;
     excerpt: string;
     date: string;
+    updatedAt?: string;
     readTimeMinutes: number;
     tags: string[];
     heroImage: ImageAsset;

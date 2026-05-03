@@ -45,7 +45,7 @@ export const presencialServicePage: ContentPage = {
         "O atendimento presencial oferece um recorte mais nítido da rotina. Para muita gente, sair de casa, chegar ao consultório e ter um espaço reservado ajuda a respirar melhor e sustentar o processo com mais presença.",
     badgeList: [
         "Av. Angélica, 1996 - sala 501",
-        "Perto do metrô Higienópolis-Mackenzie",
+        "Perto do metrô Paulista-Pernambucanas",
         "Agendamento prévio",
     ],
     image: {

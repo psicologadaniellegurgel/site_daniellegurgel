@@ -5,7 +5,7 @@
     import { blogPosts } from "$lib/content/posts";
     import { categories } from "$lib/data/categories";
     import { siteConfig } from "$lib/data/site";
-    import { internalHref } from "$lib/utils/url";
+    import { absoluteUrl, internalHref } from "$lib/utils/url";
 
     let activeCategory = "todos";
     let search = "";
@@ -26,6 +26,16 @@
             description:
                 "Hub editorial com textos sobre psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.",
             url: `${siteConfig.url}/artigos/`,
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            itemListElement: blogPosts.map((post, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: absoluteUrl(`/${post.categorySlug}/${post.slug}`),
+                name: post.title,
+            })),
         },
     ];
 </script>

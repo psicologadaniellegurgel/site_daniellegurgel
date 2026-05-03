@@ -21,6 +21,28 @@ function sectionImage(slug: string, alt: string): ImageAsset {
     };
 }
 
+const experienceLocalSection = {
+    title: "Presencial em Higienópolis ou online para este tema",
+    paragraphs: [
+        "Para quem mora ou trabalha pela região central de São Paulo, a <a href=\"/servicos/psicoterapia-presencial-higienopolis\">psicoterapia presencial em Higienópolis</a> pode ajudar quando separar fisicamente o cuidado da rotina faz diferença. O consultório fica na Av. Angélica, com acesso pelo metrô Paulista-Pernambucanas.",
+        "Para quem precisa de flexibilidade ou está fora da cidade, o atendimento online sustenta o mesmo processo com outro enquadramento logístico.",
+    ],
+    cards: [
+        {
+            title: "Psicoterapia presencial em Higienópolis",
+            text: "Como funciona o atendimento no consultório, para quem costuma fazer sentido e o que você encontra no espaço.",
+            href: "/servicos/psicoterapia-presencial-higienopolis",
+            label: "Ver atendimento presencial em Higienópolis",
+        },
+        {
+            title: "Localização e acesso ao consultório",
+            text: "Endereço, metrô, estacionamento e estrutura do espaço na Av. Angélica, Higienópolis, São Paulo.",
+            href: "/localizacao/psicologa-higienopolis-sp",
+            label: "Ver consultório em Higienópolis",
+        },
+    ],
+};
+
 const experienceCareSection = {
     title: "Como este cuidado se sustenta",
     paragraphs: [
@@ -120,6 +142,7 @@ export const lutoPage: ContentPage = {
                 },
             ],
         },
+        experienceLocalSection,
         experienceCareSection,
     ],
     faq: [
@@ -235,6 +258,7 @@ export const relationshipsPage: ContentPage = {
                 },
             ],
         },
+        experienceLocalSection,
         experienceCareSection,
     ],
     faq: [
@@ -349,6 +373,7 @@ export const overloadPage: ContentPage = {
                 },
             ],
         },
+        experienceLocalSection,
         experienceCareSection,
     ],
     faq: [
@@ -463,6 +488,7 @@ export const transitionsPage: ContentPage = {
                 },
             ],
         },
+        experienceLocalSection,
         experienceCareSection,
     ],
     faq: [
@@ -580,6 +606,7 @@ export const identityPage: ContentPage = {
                 },
             ],
         },
+        experienceLocalSection,
         experienceCareSection,
     ],
     faq: [

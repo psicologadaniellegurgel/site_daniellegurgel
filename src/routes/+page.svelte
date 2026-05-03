@@ -2,6 +2,7 @@
     import { base } from "$app/paths";
     import ArticleCard from "$lib/components/ArticleCard.svelte";
     import FAQAccordion from "$lib/components/FAQAccordion.svelte";
+    import MapEmbed from "$lib/components/MapEmbed.svelte";
     import ReviewGrid from "$lib/components/ReviewGrid.svelte";
     import SEO from "$lib/components/SEO.svelte";
     import SectionTitle from "$lib/components/SectionTitle.svelte";
@@ -12,9 +13,7 @@
         homeHero,
         homeLocationHighlights,
         homeProofPoints,
-        homeStartPaths,
         homeServicesPrimary,
-        homeServicesSupport,
     } from "$lib/data/home";
     import { googleReviews } from "$lib/data/reviews";
     import {
@@ -27,10 +26,6 @@
     import { internalHref } from "$lib/utils/url";
 
     const recentPosts = blogPosts.slice(0, 3);
-    const serviceSupportSteps = homeServicesSupport.map((item, index) => ({
-        ...item,
-        step: String(index + 1).padStart(2, "0"),
-    }));
 
     const homeSchemas = [
         {
@@ -61,9 +56,12 @@
 </script>
 
 <SEO
-    title="Danielle Gurgel | Psicoterapia em Higienópolis, SP"
-    description="Psicoterapia humanista em Higienópolis para mulheres que atravessam luto, relações difíceis, sobrecarga emocional e mudanças de vida."
+    title="Psicóloga em Higienópolis | Danielle Gurgel"
+    description="Psicóloga clínica em Higienópolis, SP. Danielle Gurgel atende presencialmente na Av. Angélica e online, com foco em luto, relações difíceis, sobrecarga e transições de vida."
     canonical="/"
+    imageAlt="Danielle Gurgel, psicóloga clínica em Higienópolis"
+    imageWidth={1200}
+    imageHeight={1500}
     schemas={homeSchemas}
 />
 
@@ -75,16 +73,16 @@
 
                 <div class="space-y-4">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl">{fixPt(homeHero.title)}</h1>
-                    <p class="max-w-[42rem] text-lg text-[var(--ink-soft)] md:text-xl">
+                    <p class="max-w-2xl text-lg text-(--ink-soft) md:text-xl">
                         {fixPt(homeHero.intro)}
                     </p>
                 </div>
 
-                <div class="chip-row">
+                <ul class="hero-meta" aria-label="Informações profissionais">
                     {#each homeHero.badges as badge}
-                        <span class="chip">{fixPt(badge)}</span>
+                        <li>{fixPt(badge)}</li>
                     {/each}
-                </div>
+                </ul>
 
                 <div class="button-row">
                     <a
@@ -95,64 +93,32 @@
                     >
                         Conversar no WhatsApp
                     </a>
-                    <a href={internalHref("/sobre")} class="btn btn-secondary">
-                        Conhecer Danielle
-                    </a>
                 </div>
             </div>
 
-            <div class="home-hero-stack">
-                <div class="relative">
-                    <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_top,_rgba(194,131,73,0.24),_transparent_60%)] blur-2xl"></div>
-                    <picture>
-                        <source
-                            type="image/avif"
-                            srcset={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero-600w.avif 600w, ${base}/images/danielle-gurgel-psicologa-higienopolis-hero-1200w.avif 1200w`}
-                            sizes="(min-width: 1024px) 46vw, 100vw"
-                        />
-                        <source
-                            type="image/webp"
-                            srcset={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero-600w.webp 600w, ${base}/images/danielle-gurgel-psicologa-higienopolis-hero-1200w.webp 1200w`}
-                            sizes="(min-width: 1024px) 46vw, 100vw"
-                        />
-                        <img
-                            src={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero.avif`}
-                            alt="Danielle Gurgel em retrato principal do site"
-                            width="1200"
-                            height="1500"
-                            loading="eager"
-                            fetchpriority="high"
-                            class="surface-card-strong aspect-[4/5] w-full object-cover"
-                        />
-                    </picture>
-                </div>
-
-                <div class="surface-card home-hero-sidebar p-5 md:p-6">
-                    <div class="space-y-3">
-                        <span class="page-compass-step">Três entradas possíveis</span>
-                        <h2 class="text-2xl text-[var(--clay-deep)]">
-                            Você não precisa começar pela mesma porta que todo mundo
-                        </h2>
-                        <p class="text-[var(--ink-soft)]">
-                            Você pode entrar pelo que está mais vivo agora: o que sente,
-                            como o atendimento funciona ou quem está do outro lado.
-                        </p>
-                    </div>
-
-                    <div class="home-quick-links">
-                        {#each homeStartPaths as item, index}
-                            <a href={internalHref(item.href)} class="home-quick-link">
-                                <span class="home-quick-link-index">
-                                    {String(index + 1).padStart(2, "0")}
-                                </span>
-                                <div class="space-y-1">
-                                    <strong>{fixPt(item.title)}</strong>
-                                    <p>{fixPt(item.text)}</p>
-                                </div>
-                            </a>
-                        {/each}
-                    </div>
-                </div>
+            <div class="relative">
+                <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_top,rgba(194,131,73,0.24),transparent_60%)] blur-2xl"></div>
+                <picture>
+                    <source
+                        type="image/avif"
+                        srcset={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero-600w.avif 600w, ${base}/images/danielle-gurgel-psicologa-higienopolis-hero-1200w.avif 1200w`}
+                        sizes="(min-width: 1024px) 46vw, 100vw"
+                    />
+                    <source
+                        type="image/webp"
+                        srcset={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero-600w.webp 600w, ${base}/images/danielle-gurgel-psicologa-higienopolis-hero-1200w.webp 1200w`}
+                        sizes="(min-width: 1024px) 46vw, 100vw"
+                    />
+                    <img
+                        src={`${base}/images/danielle-gurgel-psicologa-higienopolis-hero.avif`}
+                        alt="Danielle Gurgel em retrato principal do site"
+                        width="1200"
+                        height="1500"
+                        loading="eager"
+                        fetchpriority="high"
+                        class="surface-card-strong aspect-4/5 w-full object-cover"
+                    />
+                </picture>
             </div>
         </div>
     </div>
@@ -170,8 +136,8 @@
             <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                 {#each homeHelpThemes as item, index}
                     <article class={index % 2 === 0 ? "surface-card p-6" : "surface-card-strong p-6"}>
-                        <h3 class="text-2xl text-[var(--ink)]">{fixPt(item.title)}</h3>
-                        <p class="mt-3 text-[var(--ink-soft)]">{fixPt(item.text)}</p>
+                        <h3 class="text-2xl text-(--ink)">{fixPt(item.title)}</h3>
+                        <p class="mt-3 text-(--ink-soft)">{fixPt(item.text)}</p>
                         <a href={internalHref(item.href)} class="eyebrow-link mt-4 inline-flex">
                             {fixPt(item.label)}
                         </a>
@@ -187,8 +153,8 @@
         <div class="section-panel section-panel-soft">
             <SectionTitle
                 eyebrow="Serviços"
-                title="Formatos de atendimento e caminhos práticos para começar"
-                intro="Aqui entram as decisões operacionais do processo: formato, primeira sessão, reembolso e localização. A ideia é facilitar escolha e início, sem burocratizar o cuidado."
+                title="Dois formatos de atendimento"
+                intro="Presencial em Higienópolis ou online. A escolha costuma passar por rotina, deslocamento e pelo que te deixa mais à vontade."
             />
 
             <div class="home-service-grid">
@@ -197,39 +163,13 @@
                         <span class="home-service-badge">
                             {index === 0 ? "Presencial em Higienópolis" : "Continuidade online"}
                         </span>
-                        <h3 class="text-2xl text-[var(--ink)]">{fixPt(item.title)}</h3>
-                        <p class="mt-3 text-[var(--ink-soft)]">{fixPt(item.text)}</p>
+                        <h3 class="text-2xl text-(--ink)">{fixPt(item.title)}</h3>
+                        <p class="mt-3 text-(--ink-soft)">{fixPt(item.text)}</p>
                         <a href={internalHref(item.href)} class="btn btn-secondary mt-6">
                             {fixPt(item.label)}
                         </a>
                     </article>
                 {/each}
-            </div>
-
-            <div class="home-practical-panel">
-                <div class="space-y-3">
-                    <span class="section-kicker">Aspectos práticos</span>
-                    <h3 class="text-2xl text-[var(--clay-deep)] md:text-3xl">
-                        Respondendo dúvidas que costumam aparecer sobre aspectos práticos
-                    </h3>
-                    <p class="text-[var(--ink-soft)]">
-                        Primeira sessão, convênio, reembolso e localização ficam reunidos aqui para
-                        ajudar você a entender o funcionamento com mais clareza.
-                    </p>
-                </div>
-
-                <div class="home-practical-grid">
-                    {#each serviceSupportSteps as item}
-                        <article class="home-practical-item">
-                            <span class="page-compass-step">{item.step}</span>
-                            <h3 class="mt-4 text-xl text-[var(--ink)]">{fixPt(item.title)}</h3>
-                            <p class="mt-3 text-[var(--ink-soft)]">{fixPt(item.text)}</p>
-                            <a href={internalHref(item.href)} class="eyebrow-link mt-4 inline-flex">
-                                {fixPt(item.label)}
-                            </a>
-                        </article>
-                    {/each}
-                </div>
             </div>
         </div>
     </div>
@@ -252,8 +192,8 @@
                                 <span class="timeline-period">
                                     {String(index + 1).padStart(2, "0")}
                                 </span>
-                                <h3 class="text-xl text-[var(--ink)]">{item.title}</h3>
-                                <p class="mt-3 text-[var(--ink-soft)]">{item.text}</p>
+                                <h3 class="text-xl text-(--ink)">{item.title}</h3>
+                                <p class="mt-3 text-(--ink-soft)">{item.text}</p>
                             </article>
                         {/each}
                     </div>
@@ -269,8 +209,8 @@
                     <div class="grid gap-4">
                         {#each homeProofPoints as item}
                             <article class="stat-card">
-                                <h3 class="text-xl text-[var(--ink)]">{fixPt(item.title)}</h3>
-                                <p class="mt-3 text-[var(--ink-soft)]">{fixPt(item.text)}</p>
+                                <h3 class="text-xl text-(--ink)">{fixPt(item.title)}</h3>
+                                <p class="mt-3 text-(--ink-soft)">{fixPt(item.text)}</p>
                             </article>
                         {/each}
                     </div>
@@ -293,71 +233,49 @@
     </div>
 </section>
 
-<section id="avaliacoes" class="page-section pt-0">
+<section id="avaliacoes" class="page-section pt-0 home-section-secondary">
     <div class="site-shell">
-        <div class="section-panel section-panel-accent">
-            <SectionTitle
-                eyebrow="Avaliações públicas"
-                title="Como algumas pessoas descrevem a experiência de atendimento"
-                intro="Se quiser, você pode ler avaliações públicas sobre acolhimento, escuta e presença no processo."
-            />
-            <ReviewGrid reviews={googleReviews} />
-        </div>
+        <h2 class="home-secondary-title">Como algumas pessoas descrevem a experiência</h2>
+        <ReviewGrid reviews={googleReviews} />
     </div>
 </section>
 
-<section id="localizacao" class="page-section pt-0">
+<section id="localizacao" class="page-section pt-0 home-section-secondary">
     <div class="site-shell">
-        <div class="section-panel section-panel-soft">
-            <div class="grid gap-8 md:grid-cols-[1fr_0.9fr]">
-                <div>
-                    <SectionTitle
-                        eyebrow="Localização"
-                        title="Um consultório bem localizado ajuda o cuidado a caber na rotina"
-                        intro="Av. Angélica, 1996, sala 501. Perto do metrô, com acesso fácil e estrutura pensada para atendimento com hora marcada."
-                    />
-                    <ul class="editorial-list">
-                        {#each homeLocationHighlights as highlight}
-                            <li>{fixPt(highlight)}</li>
-                        {/each}
-                    </ul>
-                </div>
-
-                <div class="space-y-4">
-                    <img
-                        src={`${base}/images/consultorio-psicologia-higienopolis-sp-01.avif`}
-                        alt="Imagem do consultório em Higienópolis"
-                        width="900"
-                        height="1125"
-                        class="surface-card aspect-[4/3] w-full object-cover"
-                    />
+        <div class="grid gap-8 md:grid-cols-[1fr_0.9fr] items-start">
+            <div>
+                <h2 class="home-secondary-title">Localização</h2>
+                <p class="mt-2 text-(--ink-soft)">
+                    Av. Angélica, 1996, sala 501. Perto do metrô Paulista-Pernambucanas.
+                </p>
+                <ul class="editorial-list mt-4">
+                    {#each homeLocationHighlights as highlight}
+                        <li>{fixPt(highlight)}</li>
+                    {/each}
+                </ul>
+                <div class="mt-5">
                     <a href={internalHref("/localizacao/psicologa-higienopolis-sp")} class="btn btn-secondary">
                         Ver localização completa
                     </a>
                 </div>
             </div>
+
+            <MapEmbed />
         </div>
     </div>
 </section>
 
-<section id="artigos" class="page-section pt-0">
+<section id="artigos" class="page-section pt-0 home-section-secondary">
     <div class="site-shell">
-        <div class="section-panel section-panel-outline">
-            <SectionTitle
-                eyebrow="Artigos"
-                title="Se preferir continuar pela leitura, estes textos podem ajudar"
-                intro="Aqui estão os três textos mais recentes do site, para aprofundar dúvidas com calma e sem pressa."
-            />
+        <div class="flex flex-wrap items-baseline justify-between gap-3">
+            <h2 class="home-secondary-title">Leituras recentes</h2>
+            <a href={internalHref("/artigos")} class="eyebrow-link">Ver todos os artigos</a>
+        </div>
 
-            <div class="grid gap-5 md:grid-cols-3">
-                {#each recentPosts as post}
-                    <ArticleCard {post} compact />
-                {/each}
-            </div>
-
-            <div class="mt-6">
-                <a href={internalHref("/artigos")} class="btn btn-ghost">Ver todos os artigos</a>
-            </div>
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+            {#each recentPosts as post}
+                <ArticleCard {post} compact />
+            {/each}
         </div>
     </div>
 </section>
@@ -377,12 +295,12 @@
 <section class="page-section">
     <div class="site-shell">
         <div class="surface-card-strong page-gradient overflow-hidden px-6 py-8 md:px-10 md:py-10">
-            <div class="max-w-[40rem] space-y-4">
+            <div class="max-w-160 space-y-4">
                 <span class="section-kicker">Primeiro contato</span>
                 <h2 class="text-3xl md:text-4xl">
                     Se alguma parte do site pareceu falar da sua vida com honestidade, podemos continuar a conversa
                 </h2>
-                <p class="text-lg text-[var(--ink-soft)]">
+                <p class="text-lg text-(--ink-soft)">
                     Uma mensagem como "vim pelo site e gostaria de saber sobre atendimento" já é suficiente.
                 </p>
                 <div class="button-row">

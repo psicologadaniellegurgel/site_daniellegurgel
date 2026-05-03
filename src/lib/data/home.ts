@@ -8,7 +8,7 @@ export const homeHero = {
         "CRP 06/148054",
         "Presencial na Av. Angélica",
         "Atendimento online",
-        "Perto do metrô Higienópolis-Mackenzie",
+        "Perto do metrô Paulista-Pernambucanas",
     ],
 };
 
@@ -42,27 +42,6 @@ export const homeHelpThemes: FeatureCard[] = [
         text: "Quando você continua funcionando, mas sente que foi se afastando de si para sustentar tudo ao redor.",
         href: "/experiencia/autoestima-e-identidade",
         label: "Explorar identidade",
-    },
-];
-
-export const homeStartPaths: FeatureCard[] = [
-    {
-        title: "Quero entender melhor o que estou vivendo",
-        text: "Se o mais importante agora é encontrar um tema que se pareça com a sua experiência, esta costuma ser a melhor entrada.",
-        href: "/como-posso-ajudar",
-        label: "Ir para temas de acompanhamento",
-    },
-    {
-        title: "Quero saber como funciona o atendimento",
-        text: "Se sua dúvida principal é prática, aqui você encontra formato, primeira sessão, reembolso e localização.",
-        href: "/servicos",
-        label: "Ver serviços e funcionamento",
-    },
-    {
-        title: "Quero sentir quem está do outro lado",
-        text: "Antes de mandar mensagem, muita gente prefere conhecer a trajetória, a abordagem e o jeito de trabalhar.",
-        href: "/sobre",
-        label: "Conhecer Danielle",
     },
 ];
 
@@ -102,30 +81,9 @@ export const homeServicesPrimary: FeatureCard[] = [
     },
 ];
 
-export const homeServicesSupport: FeatureCard[] = [
-    {
-        title: "Primeira sessão",
-        text: "Um guia claro para entender como costuma ser o primeiro encontro e o que não precisa acontecer nele.",
-        href: "/psicoterapia/como-funciona-a-primeira-sessao",
-        label: "Ler sobre a primeira sessão",
-    },
-    {
-        title: "Recibo e reembolso",
-        text: "Informações práticas para quem quer entender emissão de recibo e possibilidade de reembolso pelo plano de saúde.",
-        href: "/psicoterapia/como-solicitar-reembolso-de-psicoterapia-pelo-plano-de-saude",
-        label: "Ver orientações de reembolso",
-    },
-    {
-        title: "Localização do consultório",
-        text: "Acesso, metrô, estacionamento e estrutura do espaço para quem avalia atendimento presencial.",
-        href: "/localizacao/psicologa-higienopolis-sp",
-        label: "Ver localização",
-    },
-];
-
 export const homeLocationHighlights: string[] = [
     "Consultório na Av. Angélica, 1996, sala 501.",
-    "Fácil acesso a partir do metrô Higienópolis-Mackenzie e da região da Paulista.",
+    "Fácil acesso a partir do metrô Paulista-Pernambucanas e da região da Paulista.",
     "Estacionamento pago no local e nos arredores.",
     "Espaço acolhedor, com banheiro acessível e ambiente seguro para pessoas LGBTQIA+.",
 ];

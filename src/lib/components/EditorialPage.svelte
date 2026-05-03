@@ -65,6 +65,9 @@
     description={fixPt(page.description)}
     canonical={page.canonicalPath}
     image={page.image?.src}
+    imageAlt={page.image?.alt ?? page.description}
+    imageWidth={page.image?.width}
+    imageHeight={page.image?.height}
     schemas={schemas}
 />
 
@@ -219,6 +222,8 @@
         </div>
     </div>
 </section>
+
+<slot name="after-sections" />
 
 {#if page.faq?.length}
     <section class="page-section pt-0">

@@ -219,72 +219,85 @@
         font-size: 0.9rem;
     }
 
-    .home-hero-stack {
-        display: grid;
-        gap: 1.25rem;
-    }
-
-    .home-hero-sidebar {
-        display: grid;
-        gap: 1.25rem;
-        background:
-            radial-gradient(circle at top right, rgba(194, 131, 73, 0.12), transparent 35%),
-            rgba(255, 255, 255, 0.84);
-    }
-
-    .home-quick-links {
-        display: grid;
-        gap: 0.85rem;
-    }
-
-    .home-quick-link {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 0.85rem;
-        align-items: start;
-        padding: 1rem 1.05rem;
-        border-radius: var(--radius-lg);
-        border: 1px solid rgba(123, 78, 66, 0.12);
-        background: rgba(255, 255, 255, 0.8);
-        transition:
-            transform 180ms ease,
-            border-color 180ms ease,
-            background-color 180ms ease;
-    }
-
-    .home-quick-link:hover {
-        transform: translateY(-1px);
-        border-color: var(--border-strong);
-        background: rgba(255, 255, 255, 0.96);
-    }
-
-    .home-quick-link strong {
-        display: block;
-        color: var(--ink);
-        font-size: 1rem;
-        line-height: 1.35;
-    }
-
-    .home-quick-link p {
+    .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.4rem 0.9rem;
         margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.9rem;
         color: var(--ink-soft);
-        font-size: 0.95rem;
-        line-height: 1.55;
+        letter-spacing: 0.01em;
     }
 
-    .home-quick-link-index {
+    .hero-meta > li {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        min-width: 2.25rem;
-        height: 2.25rem;
-        padding-inline: 0.55rem;
-        border-radius: 999px;
-        background: rgba(194, 131, 73, 0.12);
-        color: var(--copper);
-        font-size: 0.82rem;
+    }
+
+    .hero-meta > li + li::before {
+        content: "·";
+        margin-right: 0.9rem;
+        color: rgba(123, 78, 66, 0.35);
         font-weight: 700;
-        letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 520px) {
+        .hero-meta > li + li::before {
+            display: none;
+        }
+        .hero-meta {
+            gap: 0.25rem 0;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    .home-section-secondary {
+        padding-block: clamp(2.5rem, 4vw, 4rem);
+    }
+
+    .map-embed-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 44rem;
+    }
+
+    .map-embed {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-card);
+        background: rgba(246, 238, 232, 0.4);
+    }
+
+    .map-embed iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+    }
+
+    .home-secondary-title {
+        font-size: 1.35rem;
+        line-height: 1.3;
+        color: var(--ink);
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .home-secondary-title {
+            font-size: 1.6rem;
+        }
     }
 
     .grid-cards {
@@ -868,30 +881,6 @@
         text-transform: uppercase;
     }
 
-    .home-practical-panel {
-        display: grid;
-        gap: 1.4rem;
-        margin-top: 1rem;
-        padding: 1.4rem;
-        border-radius: calc(var(--radius-xl) + 0.15rem);
-        border: 1px solid rgba(123, 78, 66, 0.1);
-        background:
-            linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(246, 238, 232, 0.78));
-    }
-
-    .home-practical-grid {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .home-practical-item {
-        padding: 1.2rem;
-        border-radius: var(--radius-lg);
-        border: 1px solid rgba(123, 78, 66, 0.12);
-        background: rgba(255, 255, 255, 0.78);
-        box-shadow: var(--shadow-card);
-    }
 }
 
 @media (max-width: 768px) {
@@ -927,8 +916,7 @@
     .home-compass-grid,
     .home-theme-showcase,
     .home-theme-grid,
-    .home-service-grid,
-    .home-practical-grid {
+    .home-service-grid {
         grid-template-columns: 1fr;
     }
 

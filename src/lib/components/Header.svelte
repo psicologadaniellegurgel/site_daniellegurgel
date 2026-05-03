@@ -2,7 +2,7 @@
     import { base } from "$app/paths";
     import { page } from "$app/stores";
     import { onMount } from "svelte";
-    import { buildWhatsAppLink, navigation } from "$lib/data/site";
+    import { buildWhatsAppLink, navigation, siteConfig } from "$lib/data/site";
     import { fixPt } from "$lib/utils/text";
     import { internalHref } from "$lib/utils/url";
 
@@ -35,21 +35,21 @@
             <a
                 href={internalHref("/")}
                 class="flex items-center gap-3"
-                aria-label="Pagina inicial Danielle Gurgel"
+                aria-label={`Pagina inicial ${siteConfig.businessName}`}
             >
                 <img
                     src={`${base}/images/logo-danielle-gurgel-192.png`}
-                    alt="Logo Danielle Gurgel"
+                    alt={`Logo ${siteConfig.businessName}`}
                     width="192"
                     height="192"
                     class="h-11 w-11 rounded-full border border-[var(--border)] bg-white/80 object-contain p-1.5 shadow-sm"
                 />
                 <div class="min-w-0">
                     <div class="font-heading text-[1.05rem] font-bold text-[var(--clay-deep)] md:text-[1.16rem]">
-                        Danielle Gurgel
+                        {siteConfig.businessName}
                     </div>
                     <div class="text-[0.72rem] uppercase tracking-[0.18em] text-[var(--ink-muted)]">
-                        Psicóloga clínica
+                        CRP {siteConfig.crp}
                     </div>
                 </div>
             </a>

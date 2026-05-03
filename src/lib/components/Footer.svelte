@@ -14,17 +14,17 @@
                 <div class="flex items-center gap-3">
                     <img
                         src={`${base}/images/logo-danielle-gurgel-192.png`}
-                        alt="Logo Danielle Gurgel"
+                        alt={`Logo ${siteConfig.businessName}`}
                         width="192"
                         height="192"
                         class="h-11 w-11 rounded-full border border-[var(--border)] bg-white/80 object-contain p-1.5"
                     />
                     <div>
                         <div class="font-heading text-xl text-[var(--clay-deep)]">
-                            Danielle Gurgel
+                            {siteConfig.businessName}
                         </div>
                         <div class="text-xs uppercase tracking-[0.18em] text-[var(--ink-muted)]">
-                            Psicóloga clínica | CRP {siteConfig.crp}
+                            CRP {siteConfig.crp}
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
         </div>
 
         <div class="flex flex-col gap-3 pt-6 text-sm text-[var(--ink-muted)] md:flex-row md:items-center md:justify-between">
-            <p>&copy; {currentYear} Danielle Gurgel. Todos os direitos reservados.</p>
+            <p>&copy; {currentYear} {siteConfig.businessName}. Todos os direitos reservados.</p>
             <div class="flex flex-wrap gap-4">
                 <a href={internalHref("/politica-de-privacidade")} class="hover:text-[var(--clay)]">
                     Política de privacidade

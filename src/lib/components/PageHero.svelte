@@ -40,11 +40,11 @@
                 </div>
 
                 {#if page.badgeList?.length}
-                    <div class="chip-row">
+                    <ul class="hero-meta" aria-label="Informações profissionais">
                         {#each page.badgeList as badge}
-                            <span class="chip">{fixPt(badge)}</span>
+                            <li>{fixPt(badge)}</li>
                         {/each}
-                    </div>
+                    </ul>
                 {/if}
 
                 {#if page.actions?.length}

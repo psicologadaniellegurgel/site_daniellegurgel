@@ -185,7 +185,8 @@ export const locationPage: ContentPage = {
     title: "Psicóloga em Higienópolis, SP",
     metaTitle: "Psicóloga em Higienópolis, SP | Localização do consultório",
     description:
-        "Consultório de psicologia na Av. Angélica, em Higienópolis, com acesso por metrô, carro e deslocamento fácil pela região central.",
+        "Para quem procura psicólogo ou psicóloga em Higienópolis: consultório na Av. Angélica, com acesso por metrô, carro e deslocamento fácil pela região central.",
+    updatedAt: "2026-05-01",
     canonicalPath: "/localizacao/psicologa-higienopolis-sp",
     heroEyebrow: "Localização",
     heroIntro:
@@ -215,7 +216,7 @@ export const locationPage: ContentPage = {
         {
             title: "Como chegar",
             list: [
-                "Metrô Higienópolis-Mackenzie como referência principal de acesso.",
+                "Metrô Paulista-Pernambucanas como referência principal de acesso.",
                 "Facilidade para quem vem da Paulista, Consolação, Santa Cecília, Perdizes e arredores.",
                 "Estacionamento coberto e descoberto pago no local, além de opções próximas.",
                 "Prédio com estrutura adequada para atendimento com hora marcada.",
@@ -253,6 +254,34 @@ export const locationPage: ContentPage = {
                     },
                 ],
             },
+        },
+        {
+            title: "Quando a busca é por psicólogo em Higienópolis",
+            paragraphs: [
+                "Muita gente chega por uma busca ampla, como psicólogo em Higienópolis, antes de saber exatamente qual profissional, abordagem ou formato faz sentido. Essa busca costuma misturar duas necessidades: encontrar alguém com registro profissional e entender se a logística do consultório cabe na rotina.",
+                "Eu sou Danielle Gurgel, psicóloga clínica (CRP 06/148054) e atendo presencialmente em Higienópolis e também online. Meu consultório fica na Av. Angélica, 1996, sala 501.",
+                "A localização ajuda quando facilita a continuidade do processo, mas vale também considerar abordagem, segurança da relação, clareza ética e possibilidade real de vínculo.",
+            ],
+            cards: [
+                {
+                    title: "Ver o formato presencial",
+                    text: "Uma página para entender como a psicoterapia presencial acontece, quando costuma fazer sentido e quais cuidados orientam o processo.",
+                    href: "/servicos/psicoterapia-presencial-higienopolis",
+                    label: "Ver psicoterapia presencial",
+                },
+                {
+                    title: "Conhecer a trajetória profissional",
+                    text: "Formação, CRP, abordagem humanista e referências públicas ajudam a escolher com mais critério antes do primeiro contato.",
+                    href: "/sobre",
+                    label: "Conhecer Danielle",
+                },
+                {
+                    title: "Comparar presencial e online",
+                    text: "Se a dúvida não é só localização, este texto ajuda a pensar formato, privacidade, rotina e continuidade.",
+                    href: "/psicoterapia/psicoterapia-presencial-ou-online-como-decidir",
+                    label: "Ler comparação",
+                },
+            ],
         },
         {
             title: "Se a localização foi o que mais chamou sua atenção",
@@ -420,6 +449,7 @@ export const womenLandingPage: ContentPage = {
     metaTitle: "Psicóloga para mulheres em Higienópolis | Danielle Gurgel",
     description:
         "Página de apoio para quem procura psicóloga para mulheres em Higienópolis, com linguagem acolhedora e foco em vida emocional na cidade.",
+    updatedAt: "2026-05-01",
     canonicalPath: "/psicologa-para-mulheres-em-higienopolis",
     heroEyebrow: "Página de apoio",
     heroIntro:

@@ -1,5 +1,6 @@
 import type { ContentPage, FAQItem } from "$lib/content/types";
 import { siteConfig, toAbsoluteUrl } from "$lib/data/site";
+import { absoluteUrl } from "$lib/utils/url";
 
 const websiteId = `${siteConfig.url}/#website`;
 const organizationId = `${siteConfig.url}/#organization`;
@@ -107,7 +108,10 @@ export const localBusinessSchema = {
     telephone: siteConfig.phoneDisplay,
     sameAs: siteConfig.organizationSameAs,
     hasMap: siteConfig.googleMapsUrl,
-    areaServed: [`${siteConfig.address.neighborhood}, ${siteConfig.address.city}`],
+    areaServed: siteConfig.areaServed.map((area) => ({
+        "@type": "Place",
+        name: area === "São Paulo" ? area : `${area}, ${siteConfig.address.city}`,
+    })),
     address: {
         "@type": "PostalAddress",
         streetAddress: `${siteConfig.address.street}, ${siteConfig.address.number} - Sala ${siteConfig.address.room}`,
@@ -138,6 +142,35 @@ export const localBusinessSchema = {
     founder: {
         "@id": personId,
     },
+    makesOffer: [
+        {
+            "@type": "Offer",
+            itemOffered: {
+                "@type": "Service",
+                name: "Psicoterapia presencial em Higienópolis",
+                serviceType: "Psicoterapia",
+                areaServed: `${siteConfig.address.neighborhood}, ${siteConfig.address.city}`,
+                provider: {
+                    "@id": personId,
+                },
+            },
+        },
+        {
+            "@type": "Offer",
+            itemOffered: {
+                "@type": "Service",
+                name: "Psicoterapia online",
+                serviceType: "Psicoterapia online",
+                areaServed: {
+                    "@type": "Country",
+                    name: "Brasil",
+                },
+                provider: {
+                    "@id": personId,
+                },
+            },
+        },
+    ],
 };
 
 export const baseSchemas = [
@@ -159,7 +192,7 @@ export function createBreadcrumbSchema(items: { label: string; href?: string }[]
             "@type": "ListItem",
             position: index + 2,
             name: item.label,
-            item: item.href ? toAbsoluteUrl(item.href) : undefined,
+            item: item.href ? absoluteUrl(item.href) : undefined,
         })),
     ];
 
@@ -206,11 +239,11 @@ export function createProfilePageSchema() {
 }
 
 export function createPageSchema(page: ContentPage) {
-    const pageUrl = toAbsoluteUrl(page.canonicalPath);
+    const pageUrl = absoluteUrl(page.canonicalPath);
     const schema = {
         "@context": "https://schema.org",
         "@type": page.schemaType ?? "WebPage",
-        "@id": `${pageUrl}/#webpage`,
+        "@id": `${pageUrl}#webpage`,
         name: page.title,
         description: page.description,
         url: pageUrl,
@@ -236,7 +269,7 @@ export function createPageSchema(page: ContentPage) {
             schema.availableChannel = {
                 "@type": "ServiceChannel",
                 availableLanguage: "pt-BR",
-                serviceUrl: toAbsoluteUrl(page.canonicalPath),
+                serviceUrl: pageUrl,
             };
         } else {
             schema.provider = { "@id": localBusinessId };

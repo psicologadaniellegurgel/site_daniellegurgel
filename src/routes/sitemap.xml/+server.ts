@@ -1,48 +1,85 @@
 import { getAllPosts } from "$lib/content/posts";
+import type { ContentPage } from "$lib/content/types";
 import { categories } from "$lib/data/categories";
+import {
+    aboutPage,
+    contactPage,
+    helpHubPage,
+    locationPage,
+    privacyPage,
+    servicesHubPage,
+    termsPage,
+    womenLandingPage,
+} from "$lib/data/site-pages";
+import {
+    couplesServicePage,
+    familyServicePage,
+    groupsServicePage,
+    onlineServicePage,
+    presencialServicePage,
+} from "$lib/data/services";
+import {
+    identityPage,
+    lutoPage,
+    overloadPage,
+    relationshipsPage,
+    transitionsPage,
+} from "$lib/data/experience-pages";
 import { absoluteUrl } from "$lib/utils/url";
 
 export const prerender = true;
 
-const STATIC_LASTMOD = "2026-04-08";
+const SITE_LASTMOD = "2026-05-01";
 
-const staticPages = [
-    "/",
-    "/como-posso-ajudar",
-    "/servicos",
-    "/sobre",
-    "/contato",
-    "/artigos",
-    "/politica-de-privacidade",
-    "/termos-de-uso",
-    "/servicos/psicoterapia-presencial-higienopolis",
-    "/servicos/psicoterapia-online",
-    "/servicos/terapia-de-casal",
-    "/servicos/terapia-familiar",
-    "/servicos/grupos-e-rodas",
-    "/localizacao/psicologa-higienopolis-sp",
-    "/experiencia/luto-e-perdas",
-    "/experiencia/relacionamentos-e-rupturas",
-    "/experiencia/ansiedade-e-sobrecarga",
-    "/experiencia/transicoes-de-vida",
-    "/experiencia/autoestima-e-identidade",
-    "/psicologa-para-mulheres-em-higienopolis",
+const contentPages: ContentPage[] = [
+    helpHubPage,
+    servicesHubPage,
+    aboutPage,
+    contactPage,
+    privacyPage,
+    termsPage,
+    presencialServicePage,
+    onlineServicePage,
+    couplesServicePage,
+    familyServicePage,
+    groupsServicePage,
+    locationPage,
+    lutoPage,
+    relationshipsPage,
+    overloadPage,
+    transitionsPage,
+    identityPage,
+    womenLandingPage,
 ];
 
 function entry(url: string, lastmod?: string) {
     return `<url><loc>${url}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}</url>`;
 }
 
+function latestDate(dates: string[]) {
+    return dates.filter(Boolean).sort().at(-1);
+}
+
 export function GET() {
-    const categoryEntries = categories.map((category) =>
-        entry(absoluteUrl(`/${category.slug}`)),
+    const posts = getAllPosts();
+
+    const categoryEntries = categories.map((category) => {
+        const categoryPosts = posts.filter((post) => post.categorySlug === category.slug);
+        const lastmod = latestDate(categoryPosts.map((post) => post.updatedAt ?? post.date));
+        return entry(absoluteUrl(`/${category.slug}`), lastmod);
+    });
+
+    const postEntries = posts.map((post) =>
+        entry(absoluteUrl(`/${post.categorySlug}/${post.slug}`), post.updatedAt ?? post.date),
     );
 
-    const postEntries = getAllPosts().map((post) =>
-        entry(absoluteUrl(`/${post.categorySlug}/${post.slug}`), post.date),
-    );
-
-    const staticEntries = staticPages.map((path) => entry(absoluteUrl(path), STATIC_LASTMOD));
+    const staticEntries = [
+        entry(absoluteUrl("/"), SITE_LASTMOD),
+        entry(absoluteUrl("/artigos"), latestDate(posts.map((post) => post.updatedAt ?? post.date))),
+        ...contentPages.map((page) =>
+            entry(absoluteUrl(page.canonicalPath), page.updatedAt ?? SITE_LASTMOD),
+        ),
+    ];
 
     const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

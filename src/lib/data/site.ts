@@ -25,11 +25,11 @@ const encontroAcpUrl = "https://encontroacp.com.br/danielle-gurgel-da-fonseca/";
 const desafiosProfissaoUrl = "https://arranjospsicologia.com.br/projetos/desafios-profissao";
 
 export const siteConfig = {
-    name: "Danielle Gurgel | Psicoterapia em Higienópolis",
-    businessName: "Danielle Gurgel Psicoterapia",
+    name: "Psicóloga Danielle Gurgel | Higienópolis, SP",
+    businessName: "Psicóloga Danielle Gurgel",
     professionalName: "Danielle Gurgel",
     description:
-        "Psicoterapia humanista em Higienópolis para mulheres que atravessam luto, relações difíceis, sobrecarga e transições de vida.",
+        "Psicóloga clínica em Higienópolis, São Paulo, com psicoterapia humanista para mulheres que atravessam luto, relações difíceis, sobrecarga e transições de vida.",
     url: "https://psicologadaniellegurgel.com.br",
     phoneIntl: "5511932037191",
     phoneDisplay: "+55 (11) 93203-7191",
@@ -51,6 +51,14 @@ export const siteConfig = {
         latitude: -23.5497347,
         longitude: -46.66001,
     },
+    areaServed: [
+        "Higienópolis",
+        "Santa Cecília",
+        "Consolação",
+        "Paulista",
+        "Perdizes",
+        "São Paulo",
+    ],
 };
 
 export const navigation: NavigationItem[] = [
@@ -86,7 +94,7 @@ export const professionalVerificationLinks: VerificationLink[] = [
 export const professionalSignals: ProfessionalSignal[] = [
     {
         title: "Registro e atuacao clinica",
-        text: "Psicologa clinica com CRP 06/148054, atendimento presencial em Higienopolis e online.",
+        text: "Psicóloga clínica com CRP 06/148054, atendimento presencial em Higienópolis e online.",
     },
     {
         title: "Formacao de base e aprofundamento",

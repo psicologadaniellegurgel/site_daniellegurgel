@@ -21,6 +21,8 @@
 
     const articlePath = `/${data.post.categorySlug}/${data.post.slug}`;
     const articleUrl = absoluteUrl(articlePath);
+    const articleModified = data.post.updatedAt ?? data.post.date;
+    const hasRevisionDate = Boolean(data.post.updatedAt && data.post.updatedAt !== data.post.date);
     const startHereLinks = data.category.startHere.filter((item) => item.href !== articlePath);
     const nextStepLinks = data.category.nextSteps.filter((item) => item.href !== articlePath);
     const continuationLinks = [...startHereLinks, ...nextStepLinks].slice(0, 4);
@@ -40,7 +42,7 @@
                 ? { abstract: stripInlineHtml(data.post.snippetAnswer.html) }
                 : {}),
             datePublished: data.post.date,
-            dateModified: data.post.date,
+            dateModified: articleModified,
             inLanguage: "pt-BR",
             mainEntityOfPage: articleUrl,
             image: toAbsoluteUrl(data.post.heroImage.src),
@@ -77,10 +79,13 @@
     description={fixPt(data.post.description)}
     canonical={articlePath}
     image={data.post.heroImage.src}
+    imageAlt={data.post.heroImage.alt}
+    imageWidth={data.post.heroImage.width}
+    imageHeight={data.post.heroImage.height}
     type="article"
     schemas={articleSchemas}
     published={data.post.date}
-    modified={data.post.date}
+    modified={articleModified}
 />
 
 <Breadcrumbs
@@ -109,8 +114,10 @@
                     </div>
 
                     <p class="text-sm text-[var(--ink-muted)]">
-                        Texto assinado por Danielle Gurgel, psicóloga clínica, CRP
-                        {siteConfig.crp}, e revisado em {formatDisplayDate(data.post.date)}.
+                        Texto assinado por Danielle Gurgel, psicóloga clínica, CRP {siteConfig.crp}.
+                        {#if hasRevisionDate}
+                            Atualizado em {formatDisplayDate(articleModified)}.
+                        {/if}
                     </p>
 
                     <img
