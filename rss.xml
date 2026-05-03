@@ -6,8 +6,17 @@
   <atom:link href="https://psicologadaniellegurgel.com.br/rss.xml" rel="self" type="application/rss+xml" />
   <description>Artigos de psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.</description>
   <language>pt-BR</language>
-  <lastBuildDate>Wed, 22 Apr 2026 15:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 03 May 2026 15:00:00 GMT</lastBuildDate>
   
+<item>
+  <title>Quem cuida de quem cuida? O esgotamento silencioso de profissionais da saúde</title>
+  <link>https://psicologadaniellegurgel.com.br/vida-urbana-e-sobrecarga/quem-cuida-de-quem-cuida-esgotamento-profissional-da-saude/</link>
+  <guid>https://psicologadaniellegurgel.com.br/vida-urbana-e-sobrecarga/quem-cuida-de-quem-cuida-esgotamento-profissional-da-saude/</guid>
+  <description>Profissionais da saúde convivem com sobrecarga emocional silenciosa. Quando cuidar dos outros se torna tudo, o contato consigo vai ficando menor.</description>
+  <pubDate>Sun, 03 May 2026 15:00:00 GMT</pubDate>
+  <category>vida-urbana-e-sobrecarga</category>
+</item>
+
 <item>
   <title>Por que me sinto sozinha mesmo cercada de gente — e como a terapia pode ajudar</title>
   <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/por-que-me-sinto-sozinha-mesmo-cercada-de-gente/</link>
@@ -176,15 +185,6 @@
   <guid>https://psicologadaniellegurgel.com.br/vida-urbana-e-sobrecarga/quando-voce-nao-se-reconhece-mais-na-propria-rotina/</guid>
   <description>Um texto sobre estranhamento com a própria vida, automatismo e a sensação de estar se afastando de si na rotina cotidiana.</description>
   <pubDate>Sat, 21 Mar 2026 15:00:00 GMT</pubDate>
-  <category>vida-urbana-e-sobrecarga</category>
-</item>
-
-<item>
-  <title>Por que fazer terapia pode ser essencial no mundo corporativo</title>
-  <link>https://psicologadaniellegurgel.com.br/vida-urbana-e-sobrecarga/por-que-fazer-terapia-pode-ser-essencial-no-mundo-corporativo/</link>
-  <guid>https://psicologadaniellegurgel.com.br/vida-urbana-e-sobrecarga/por-que-fazer-terapia-pode-ser-essencial-no-mundo-corporativo/</guid>
-  <description>Uma reflexão sobre como a terapia pode ajudar a elaborar pressão, metas, autocobrança e excesso de exigência no contexto de trabalho.</description>
-  <pubDate>Fri, 20 Mar 2026 15:00:00 GMT</pubDate>
   <category>vida-urbana-e-sobrecarga</category>
 </item>
 </channel>
