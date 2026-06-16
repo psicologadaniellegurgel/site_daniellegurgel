@@ -6,8 +6,17 @@
   <atom:link href="https://psicologadaniellegurgel.com.br/rss.xml" rel="self" type="application/rss+xml" />
   <description>Artigos de psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.</description>
   <language>pt-BR</language>
-  <lastBuildDate>Tue, 12 May 2026 15:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 16 Jun 2026 15:00:00 GMT</lastBuildDate>
   
+<item>
+  <title>Por que as pessoas se viciam: o sofrimento por trás da dependência</title>
+  <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/dependencia-e-sofrimento-um-olhar-mais-humano/</link>
+  <guid>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/dependencia-e-sofrimento-um-olhar-mais-humano/</guid>
+  <description>Por que as pessoas se viciam? A dependência pode ser menos sobre prazer e mais sobre dor. Entenda o sofrimento emocional por trás dos comportamentos aditivos.</description>
+  <pubDate>Tue, 16 Jun 2026 15:00:00 GMT</pubDate>
+  <category>acp-e-autoconhecimento</category>
+</item>
+
 <item>
   <title>Onde encontrar apoio psicológico para luto em São Paulo</title>
   <link>https://psicologadaniellegurgel.com.br/luto-e-perdas/apoio-psicologico-luto-sao-paulo/</link>
@@ -177,15 +186,6 @@
   <description>Um texto acolhedor sobre a experiência não linear do luto e o que costuma acontecer depois de uma perda significativa.</description>
   <pubDate>Tue, 24 Mar 2026 15:00:00 GMT</pubDate>
   <category>luto-e-perdas</category>
-</item>
-
-<item>
-  <title>Dicas para escolher um psicólogo online sem transformar essa decisão em mais uma fonte de pressão</title>
-  <link>https://psicologadaniellegurgel.com.br/psicoterapia/dicas-para-escolher-um-psicologo-online/</link>
-  <guid>https://psicologadaniellegurgel.com.br/psicoterapia/dicas-para-escolher-um-psicologo-online/</guid>
-  <description>Um guia prático e acolhedor para escolher psicólogo online com atenção à abordagem, ao registro profissional, ao vínculo e à viabilidade da rotina.</description>
-  <pubDate>Mon, 23 Mar 2026 15:00:00 GMT</pubDate>
-  <category>psicoterapia</category>
 </item>
 </channel>
 </rss>
