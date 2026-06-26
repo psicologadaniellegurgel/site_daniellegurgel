@@ -6,8 +6,17 @@
   <atom:link href="https://psicologadaniellegurgel.com.br/rss.xml" rel="self" type="application/rss+xml" />
   <description>Artigos de psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.</description>
   <language>pt-BR</language>
-  <lastBuildDate>Tue, 16 Jun 2026 15:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 26 Jun 2026 15:00:00 GMT</lastBuildDate>
   
+<item>
+  <title>Você não precisa chegar pronto para a terapia</title>
+  <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/voce-nao-precisa-chegar-pronto-para-a-terapia/</link>
+  <guid>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/voce-nao-precisa-chegar-pronto-para-a-terapia/</guid>
+  <description>A terapia não exige que você saiba o que sente ou tenha uma demanda organizada. Na ACP, a compreensão de si pode ser construída dentro do próprio processo.</description>
+  <pubDate>Fri, 26 Jun 2026 15:00:00 GMT</pubDate>
+  <category>acp-e-autoconhecimento</category>
+</item>
+
 <item>
   <title>Por que as pessoas se viciam: o sofrimento por trás da dependência</title>
   <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/dependencia-e-sofrimento-um-olhar-mais-humano/</link>
@@ -177,15 +186,6 @@
   <description>Uma reflexão sobre diagnóstico psicológico como ferramenta inicial, sem perder de vista a singularidade da experiência humana.</description>
   <pubDate>Tue, 24 Mar 2026 15:00:00 GMT</pubDate>
   <category>acp-e-autoconhecimento</category>
-</item>
-
-<item>
-  <title>Luto não é linear: o que costuma acontecer depois de uma perda, mesmo quando todos esperam que você já esteja melhor</title>
-  <link>https://psicologadaniellegurgel.com.br/luto-e-perdas/luto-nao-e-linear/</link>
-  <guid>https://psicologadaniellegurgel.com.br/luto-e-perdas/luto-nao-e-linear/</guid>
-  <description>Um texto acolhedor sobre a experiência não linear do luto e o que costuma acontecer depois de uma perda significativa.</description>
-  <pubDate>Tue, 24 Mar 2026 15:00:00 GMT</pubDate>
-  <category>luto-e-perdas</category>
 </item>
 </channel>
 </rss>
