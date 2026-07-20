@@ -6,8 +6,17 @@
   <atom:link href="https://psicologadaniellegurgel.com.br/rss.xml" rel="self" type="application/rss+xml" />
   <description>Artigos de psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.</description>
   <language>pt-BR</language>
-  <lastBuildDate>Tue, 07 Jul 2026 15:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 19 Jul 2026 15:00:00 GMT</lastBuildDate>
   
+<item>
+  <title>Por que confiar no outro é tão difícil — e o que a terapia tem a ver com isso</title>
+  <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/por-que-confiar-no-outro-e-tao-dificil/</link>
+  <guid>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/por-que-confiar-no-outro-e-tao-dificil/</guid>
+  <description>Confiar no processo do outro exige abrir mão do controle. Na ACP, a mudança acontece pela relação — não porque alguém decide aonde o outro deve chegar.</description>
+  <pubDate>Sun, 19 Jul 2026 15:00:00 GMT</pubDate>
+  <category>acp-e-autoconhecimento</category>
+</item>
+
 <item>
   <title>Quando você deixa de se reconhecer: por que isso acontece?</title>
   <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/quando-voce-deixa-de-se-reconhecer/</link>
@@ -177,15 +186,6 @@
   <description>Uma explicação clara e humana sobre a Abordagem Centrada na Pessoa e o que muda na prática clínica quando a relação vira centro do trabalho.</description>
   <pubDate>Wed, 25 Mar 2026 15:00:00 GMT</pubDate>
   <category>acp-e-autoconhecimento</category>
-</item>
-
-<item>
-  <title>O que esperar da terapia quando você ainda não confia de primeira e não quer respostas prontas</title>
-  <link>https://psicologadaniellegurgel.com.br/psicoterapia/o-que-esperar-da-terapia/</link>
-  <guid>https://psicologadaniellegurgel.com.br/psicoterapia/o-que-esperar-da-terapia/</guid>
-  <description>Um texto sobre confiança, autonomia e o que realmente pode ser esperado de um processo terapêutico humanista.</description>
-  <pubDate>Wed, 25 Mar 2026 15:00:00 GMT</pubDate>
-  <category>psicoterapia</category>
 </item>
 </channel>
 </rss>
