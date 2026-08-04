@@ -6,8 +6,17 @@
   <atom:link href="https://psicologadaniellegurgel.com.br/rss.xml" rel="self" type="application/rss+xml" />
   <description>Artigos de psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.</description>
   <language>pt-BR</language>
-  <lastBuildDate>Sun, 19 Jul 2026 15:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 03 Aug 2026 15:00:00 GMT</lastBuildDate>
   
+<item>
+  <title>Quando a terapia termina? O que significa a alta e quem decide o encerramento</title>
+  <link>https://psicologadaniellegurgel.com.br/psicoterapia/quando-a-terapia-termina/</link>
+  <guid>https://psicologadaniellegurgel.com.br/psicoterapia/quando-a-terapia-termina/</guid>
+  <description>A &quot;alta&quot; na terapia não funciona como em outros tratamentos. O encerramento é uma construção conjunta, que respeita a autonomia e o momento de cada pessoa.</description>
+  <pubDate>Mon, 03 Aug 2026 15:00:00 GMT</pubDate>
+  <category>psicoterapia</category>
+</item>
+
 <item>
   <title>Por que confiar no outro é tão difícil — e o que a terapia tem a ver com isso</title>
   <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/por-que-confiar-no-outro-e-tao-dificil/</link>
@@ -177,15 +186,6 @@
   <description>Critérios práticos e éticos para escolher uma psicóloga, considerando CRP, abordagem, logística possível e sensação de encontro real.</description>
   <pubDate>Thu, 26 Mar 2026 15:00:00 GMT</pubDate>
   <category>psicoterapia</category>
-</item>
-
-<item>
-  <title>O que a Abordagem Centrada na Pessoa oferece na prática quando você está cansada de respostas prontas</title>
-  <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/o-que-a-abordagem-centrada-na-pessoa-oferece-na-pratica/</link>
-  <guid>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/o-que-a-abordagem-centrada-na-pessoa-oferece-na-pratica/</guid>
-  <description>Uma explicação clara e humana sobre a Abordagem Centrada na Pessoa e o que muda na prática clínica quando a relação vira centro do trabalho.</description>
-  <pubDate>Wed, 25 Mar 2026 15:00:00 GMT</pubDate>
-  <category>acp-e-autoconhecimento</category>
 </item>
 </channel>
 </rss>
