@@ -6,8 +6,17 @@
   <atom:link href="https://psicologadaniellegurgel.com.br/rss.xml" rel="self" type="application/rss+xml" />
   <description>Artigos de psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.</description>
   <language>pt-BR</language>
-  <lastBuildDate>Mon, 03 Aug 2026 15:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 12 Sep 2026 15:00:00 GMT</lastBuildDate>
   
+<item>
+  <title>Por que experiências humanas não cabem em regras prontas</title>
+  <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/experiencias-humanas-nao-cabem-em-regras-prontas/</link>
+  <guid>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/experiencias-humanas-nao-cabem-em-regras-prontas/</guid>
+  <description>Generalizações ajudam a estudar fenômenos humanos, mas não substituem a escuta da experiência singular de cada pessoa.</description>
+  <pubDate>Sat, 12 Sep 2026 15:00:00 GMT</pubDate>
+  <category>acp-e-autoconhecimento</category>
+</item>
+
 <item>
   <title>Terapia tem alta? Como funciona o encerramento do processo</title>
   <link>https://psicologadaniellegurgel.com.br/psicoterapia/quando-a-terapia-termina/</link>
@@ -177,15 +186,6 @@
   <description>Uma leitura humanista sobre terapia como cuidado das condições de crescimento, e não como molde externo de comportamento.</description>
   <pubDate>Thu, 26 Mar 2026 15:00:00 GMT</pubDate>
   <category>acp-e-autoconhecimento</category>
-</item>
-
-<item>
-  <title>Como escolher uma psicóloga com critério sem cair em página bonita e resposta vazia</title>
-  <link>https://psicologadaniellegurgel.com.br/psicoterapia/como-escolher-uma-psicologa-com-criterio/</link>
-  <guid>https://psicologadaniellegurgel.com.br/psicoterapia/como-escolher-uma-psicologa-com-criterio/</guid>
-  <description>Critérios práticos e éticos para escolher uma psicóloga, considerando CRP, abordagem, logística possível e sensação de encontro real.</description>
-  <pubDate>Thu, 26 Mar 2026 15:00:00 GMT</pubDate>
-  <category>psicoterapia</category>
 </item>
 </channel>
 </rss>
