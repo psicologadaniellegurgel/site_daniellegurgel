@@ -6,8 +6,17 @@
   <atom:link href="https://psicologadaniellegurgel.com.br/rss.xml" rel="self" type="application/rss+xml" />
   <description>Artigos de psicoterapia, luto, relacionamentos, vida urbana e autoconhecimento.</description>
   <language>pt-BR</language>
-  <lastBuildDate>Sat, 12 Sep 2026 15:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 16 Sep 2026 15:00:00 GMT</lastBuildDate>
   
+<item>
+  <title>Quando o médico também precisa de um lugar para falar</title>
+  <link>https://psicologadaniellegurgel.com.br/psicoterapia/quando-o-medico-tambem-precisa-de-um-lugar-para-falar/</link>
+  <guid>https://psicologadaniellegurgel.com.br/psicoterapia/quando-o-medico-tambem-precisa-de-um-lugar-para-falar/</guid>
+  <description>Psicoterapia para médicos em São Paulo, com escuta confidencial e atendimento presencial em Higienópolis para questões pessoais e profissionais.</description>
+  <pubDate>Wed, 16 Sep 2026 15:00:00 GMT</pubDate>
+  <category>psicoterapia</category>
+</item>
+
 <item>
   <title>Por que experiências humanas não cabem em regras prontas</title>
   <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/experiencias-humanas-nao-cabem-em-regras-prontas/</link>
@@ -177,15 +186,6 @@
   <description>Um texto direto sobre como escolher entre atendimento presencial e online considerando rotina, privacidade, corpo e qualidade de encontro.</description>
   <pubDate>Fri, 27 Mar 2026 15:00:00 GMT</pubDate>
   <category>psicoterapia</category>
-</item>
-
-<item>
-  <title>Sou uma jardineira, não uma paisagista: uma imagem para entender a essência do trabalho terapêutico</title>
-  <link>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/sou-uma-jardineira-nao-uma-paisagista/</link>
-  <guid>https://psicologadaniellegurgel.com.br/acp-e-autoconhecimento/sou-uma-jardineira-nao-uma-paisagista/</guid>
-  <description>Uma leitura humanista sobre terapia como cuidado das condições de crescimento, e não como molde externo de comportamento.</description>
-  <pubDate>Thu, 26 Mar 2026 15:00:00 GMT</pubDate>
-  <category>acp-e-autoconhecimento</category>
 </item>
 </channel>
 </rss>
