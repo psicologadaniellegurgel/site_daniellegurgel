@@ -1,1 +1,0 @@
-import"../chunks/DFKntpUj.js";import"../chunks/BBkbveNw.js";import{E as r}from"../chunks/BpfKza0c.js";import{p}from"../chunks/Bsh4CbeO.js";function m(o){r(o,{get page(){return p}})}export{m as component};
